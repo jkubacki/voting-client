@@ -68,4 +68,24 @@ describe('Voting', () => {
     const winner = ReactDOM.findDOMNode(component.refs.winner);
     expect(winner.textContent).to.contain('Winner is Trainspotting!');
   });
+
+  it('renders pure component', () => {
+    const pair = ['Trainspotting', '28 Days Later'];
+    const container = document.createElement('div');
+    let component = ReactDOM.render(
+      <Voting pair={pair} />,
+      container
+    );
+
+    let firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
+    expect(firstButton.textContent).to.equal('Trainspotting');
+
+    pair[0] = 'Sunshine';
+    component = ReactDOM.render(
+      <Voting pair={pair} />,
+      container
+    );
+    firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
+    expect(firstButton.textContent).to.equal('Trainspotting');
+  });
 });
