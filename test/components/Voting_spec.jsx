@@ -46,4 +46,14 @@ describe('Voting', () => {
     expect(buttons[0].hasAttribute('disabled')).to.equal(true);
     expect(buttons[1].hasAttribute('disabled')).to.equal(true);
   });
+
+  it('adds voted label to voted entry', () => {
+    const component = renderIntoDocument(
+      <Voting pair={["Trainspotting", "28 Days Later"]} hasVoted="28 Days Later" />
+    );
+
+    const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
+
+    expect(buttons[1].textContent).to.contain('Voted');
+  });
 });
