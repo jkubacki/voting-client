@@ -13,7 +13,7 @@ export default React.createClass({
     return this.props.hasVoted === entry;
   },
   render: function() {
-    return <div className="voting">
+    return <div>
       { this.props.winner ?
         <Winner ref="winner" winner={this.props.winner} /> :
         <Vote {...this.props} />
